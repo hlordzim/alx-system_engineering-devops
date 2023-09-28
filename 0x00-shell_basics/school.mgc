@@ -1,0 +1,2 @@
+#!/bin/bash
+nano school.mgc 0 string SCHOOL School data file
