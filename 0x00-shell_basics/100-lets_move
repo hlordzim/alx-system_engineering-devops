@@ -1,2 +1,2 @@
 #!/bin/bash
--type f -name '[A-Z]*' -exec mv {} /tmp/u
+[A-Z]* mv "$file" /tmp/u/
