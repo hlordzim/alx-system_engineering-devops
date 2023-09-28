@@ -1,0 +1,2 @@
+#!/bin/bash
+rsync -au --ignore-existing --include '*/' --include '*.html' --exclude '*' ./ ../
