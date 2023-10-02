@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "YourInputString" | sed 's/A/Z/g; s/c/e/g'
+echo "Replace all characters" | sed 's/A/Z/g s/c/e/g'
