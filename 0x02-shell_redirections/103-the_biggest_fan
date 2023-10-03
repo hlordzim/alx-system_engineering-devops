@@ -1,0 +1,3 @@
+#!/bin/bash
+cut -f1 your_web_server_log_file.log | sort | uniq -c | sort -nr | head -n 11
+
