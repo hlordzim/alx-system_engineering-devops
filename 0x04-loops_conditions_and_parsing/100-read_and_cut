@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Displays the content of the file /etc/passwd.
+# "username
+# "user id
+# "Home directory path for the user
+
+# Use the IFS variable to set the field separator to ':'
+# This is to properly parse the /etc/passwd file
+IFS=":"
+
+while read -r username _ userid _ homedir _;
+do
+	echo "Username: $username"
+	echo "User ID: $userid"
+	echo "Home directory: $homedir"
+done < /etc/passwd
