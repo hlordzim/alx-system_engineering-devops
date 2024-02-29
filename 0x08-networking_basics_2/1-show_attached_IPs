@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Displays all active IPv4 addresses on the machine.
+
+echo "Active IPv4 Addresses:"
+ip addr show | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b"
