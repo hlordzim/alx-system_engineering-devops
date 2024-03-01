@@ -3,18 +3,4 @@
 # "That only shows listening sockets
 # "PID and name of the program to which each socket belongs.
 
-listening_sockets=$(netstat -tuln)
-echo "PID   Program Name   Port"
-while IFS= read -r line;
-do
-	protocol=$(echo "$line" | awk '{print $1}')
-	local_address=$(echo "$line" | awk '{print $4}')
-	pid_program=$(echo "$line" | awk '{print $NF}')
-	pid=$(echo "$pid_program" | awk -F '/' '{print $1}')
-	program=$(echo "$pid_program" | awk -F '/' '{print $2}')
-	port=$(echo "$local_address" | awk -F ':' '{print $NF}')
-	if [[ "$protocol" == "tcp" || "$protocol" == "udp" ]];
-	then
-		echo "$pid   $program   $port"
-	fi
-done <<< "$listening_sockets"
+netstat -l --program
