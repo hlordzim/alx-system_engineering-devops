@@ -1,4 +1,4 @@
-Host your_server_address_or_ip
+# Host your_server_address_or_ip
 54.172.215.221
     IdentityFile ~/.ssh/school
     IdentitiesOnly yes
