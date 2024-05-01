@@ -3,6 +3,7 @@
 
 file { 'etc/ssh_config':
 	ensure => present,
+	mode    => '0644',
 
 content => "
 
@@ -10,4 +11,6 @@ content => "
 	host"
 	IdentityFile ~/.ssh/school
 	PasswordAuthentication no
+
+	",
 }
