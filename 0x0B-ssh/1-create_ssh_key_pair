@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 # Bash script that creates an RSA key pair with 4096 bits 
-# and protected by passphrase "betty"
-private_key="school"
-public_key="$private_key.pub"
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/$private_key -N "bett"
-echo "Generating public/private rsa key pair."
-echo "Your identification has been saved in $private_key."
-echo "Your public key has been saved in $public_key."
-ssh-keygen -lf ~/.ssh/$private_key
+#   and protected by passphrase "betty"
+
+ssh-keygen -t rsa -b 4096 -C "betty" -f ~/.ssh/school
