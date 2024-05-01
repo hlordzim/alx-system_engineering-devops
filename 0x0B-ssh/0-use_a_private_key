@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # SSH connection using private key and user
-server="your_server_address_or_ip"
+server=54.242.181.105
 ssh -i ~/.ssh/school ubuntu@$server
