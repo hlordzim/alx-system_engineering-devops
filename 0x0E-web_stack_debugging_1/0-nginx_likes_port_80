@@ -1,26 +1,16 @@
 #!/usr/bin/env bash
+# Bash Script to automate,configure and fix my code
 
-nginx_status=$(systemctl is-active nginx)
+if ! command -v nginx &> /dev/null; then
+    sudo apt update
+    sudo apt install nginx -y
+fi
 
-if [[ $nginx_status != "active" ]]; then
-    echo "Nginx is not running. Starting Nginx..."
+if ! systemctl is-active --quiet nginx; then
     sudo systemctl start nginx
-    sleep 2  # Give some time for Nginx to start
 fi
 
-port_80_status=$(netstat -tuln | grep ":80")
-
-if [[ -n $port_80_status ]]; then
-    echo "Port 80 is already in use:"
-    echo "$port_80_status"
-    exit 1
+if ! grep -q "listen\s*80;" /etc/nginx/nginx.conf; then
+    sudo sed -i 's/#\?\(listen\s*\)80;/\1 80;/g' /etc/nginx/nginx.conf
 fi
-
-echo "Updating Nginx configuration to listen on port 80 of all active IPv4 IPs..."
-
-sudo sed -i '/^ *server_name/ a \ \ \ \ listen 80 default_server;' /etc/nginx/sites-available/default
-
-echo "Restarting Nginx service..."
 sudo systemctl restart nginx
-
-echo "Nginx is now listening on port 80 of all active IPv4 IPs."
