@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Bash script for task 2 web debugging
+
+if ! command -v nginx &> /dev/null
+then
+    sudo apt update
+    sudo apt install nginx -y
+fi
+sudo systemctl status nginx | grep -q "inactive" && sudo systemctl start nginx
+sudo grep -q "listen\s*80;" /etc/nginx/nginx.conf || sudo sed -i 's/#\?\(listen\s*\)80;/\1 80;/g' /etc/nginx/nginx.conf
+sudo systemctl restart nginx
