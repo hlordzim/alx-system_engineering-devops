@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
+# Configures a new ubuntu machine by installing Nginx
 
-# Install Nginx
 sudo apt-get update -y -qq
 sudo apt-get install nginx -y
 
@@ -8,7 +8,7 @@ sudo apt-get install nginx -y
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 
 # Set up redirection from /redirect_me to a YouTube video
-sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo sed -i '/location \/ {/a \       location /redirect_me { rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent; }' /etc/nginx/sites-available/default
 
 # Restart Nginx
 sudo service nginx restart
