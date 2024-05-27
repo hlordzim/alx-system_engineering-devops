@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # This Script fixes the issues of debugging
-sudo service apache2 stsrt
+service apache2 stsrt
 
