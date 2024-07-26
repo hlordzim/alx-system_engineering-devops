@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
 # Fixes server bug
 chmod 644 /etc/nginx/nginx.conf
 sed -Ei 's/\s*#?\s*user .*/user nginx;/' /etc/nginx/nginx.conf
@@ -7,33 +6,3 @@ sed -Ei 's/(listen (\[::\]:)?80) /\180 /' /etc/nginx/sites-enabled/default
 pkill apache2
 # restart
 su nginx -s /bin/bash -c 'service nginx restart'
-=======
-
-# Ensure script is run as root
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
-
-# Nginx configuration file path
-NGINX_CONF="/etc/nginx/nginx.conf"
-
-# Ensure the nginx user exists
-if ! id -u nginx > /dev/null 2>&1; then
-    echo "Creating nginx user..."
-    useradd -r -d /var/www -s /sbin/nologin nginx
-fi
-
-# Backup the original nginx configuration file
-cp $NGINX_CONF $NGINX_CONF.bak
-
-# Modify the nginx configuration file
-sed -i 's/^user .*/user nginx;/g' $NGINX_CONF
-sed -i 's/listen 80;/listen 8080;/g' /etc/nginx/sites-available/default
-
-# Restart nginx to apply changes
-service nginx restart
-
-echo "Nginx has been configured to run as the nginx user on port 8080."
-
->>>>>>> 317c950fd60c264bcf2aeca3ff7104ada3e05194
